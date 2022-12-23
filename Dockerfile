@@ -15,11 +15,11 @@ RUN chmod 755 boot/efi/rpi4-u-boot.bin
 
 
 FROM registry.fedoraproject.org/fedora:${RELEASE}
-COPY --from=quay.io/coreos/coreos-installer:release /usr/sbin/coreos-installer /usr/sbin
-COPY --from=UBOOT /efifiles/boot/efi /efifiles/boot/efi
-COPY install.sh /usr/bin/
 RUN dnf install -y /usr/bin/gpg /usr/sbin/kpartx /usr/bin/lsblk \
     /usr/sbin/udevadm /usr/bin/rsync /usr/bin/butane && \
     dnf clean all
 WORKDIR /data
+COPY --from=quay.io/coreos/coreos-installer:release /usr/sbin/coreos-installer /usr/sbin
+COPY --from=UBOOT /efifiles/boot/efi /efifiles/boot/efi
+COPY install.sh /usr/bin/
 #ENTRYPOINT ["/usr/bin/install.sh"]
