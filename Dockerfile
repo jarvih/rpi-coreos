@@ -21,6 +21,5 @@ COPY install.sh /usr/bin/
 RUN dnf install -y /usr/bin/gpg /usr/sbin/kpartx /usr/bin/lsblk \
     /usr/sbin/udevadm /usr/bin/rsync /usr/bin/butane && \
     dnf clean all
-RUN mkdir /data
 WORKDIR /data
 #ENTRYPOINT ["/usr/bin/install.sh"]
